@@ -9,6 +9,7 @@ const usersRouter = require('./routes/users');
 const catalogRouter = require('./routes/catalog');
 const compression = require('compression');
 const helmet = require('helmet');
+require('dotenv').config();
 
 const app = express();
 
@@ -18,6 +19,8 @@ const limiter = RateLimit({
   max: 20,
 });
 app.use(limiter);
+
+const mongoDB = process.env.MONGODB_URI;
 
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
